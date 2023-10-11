@@ -5,8 +5,8 @@ opt1.SelectedVariableNames = 6:8;
 opt1.DataRange = '2:166164';
 data = readmatrix('E:\data\MotionData\90009轨迹9月.xlsx',opt1);
 origin_pos = [data(1,3),data(1,2),0];
-);%提取EXCLE经纬度、高程数据存入在POS中
-[pos.x,pos.y,pos.z] = latlon2local(data(:,3),data(:,2),data(:,1),origin_pos
+%提取EXCLE经纬度、高程数据存入在POS中
+[pos.x,pos.y,pos.z] = latlon2local(data(:,3),data(:,2),data(:,1),origin_pos);
 opt2 = detectImportOptions('E:\data\MotionData\90009轨迹9月.xlsx');
 opt2.SelectedVariableNames = 5 ;
 opt2.DataRange = '2:166164';
