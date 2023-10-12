@@ -1,6 +1,7 @@
 %%满载曲率的计算函数
 % 实际数据
-load('90009_load_traj.mat');
+%load('90009_load_traj.mat');
+%load('90009_load_traj_166165_285664.mat');
 dx = diff(load_state.jing);
 dy = diff(load_state.wei);
 Size = length(dx);

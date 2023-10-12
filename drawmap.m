@@ -34,7 +34,8 @@ save([ pwd, '.\90009_traj_sep_1_',load_batch_end,'.mat' ],'pos');
 
 %% 绘图
 % load ../data/90009_traj_sep_1_100000.mat;
+% 
 %plot(pos.x,pos.y);
 % plot3(pos.x,pos.y,pos.z);
 plot3(pos.x,pos.y,pos.t);
-axis equal;
+%axis equal;

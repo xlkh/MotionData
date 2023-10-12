@@ -12,16 +12,18 @@ if pos.open(i) == 1 %满载状态
     load_state.jing(j,1) = pos.jing(i);
     load_state.wei(j,1) = pos.wei(i);
     j = j + 1;
-else     %空载状态
+else
     unload_state.x(k,1) =  pos.x(i);
     unload_state.y(k,1) =  pos.y(i);
     unload_state.z(k,1) =  pos.z(i);
     unload_state.t(k,1) =  pos.t(i);
     unload_state.open(k,1) =  pos.open(i);
-    unload_state.jing(j,1) = pos.jing(i);
-    unload_state.wei(j,1) = pos.wei(i);
+    unload_state.jing(k,1) = pos.jing(i);
+    unload_state.wei(k,1) = pos.wei(i);
     k = k + 1;
 end
 end
-save('E:\data\MotionData\90009_load_traj','load_state');
-save('E:\data\MotionData\90009_unload_traj','unload_state');
+save('E:\data\MotionData\90009_load_traj_1_285664','load_state');
+save('E:\data\MotionData\90009_load_traj_1_285664','unload_state');
+%save('E:\data\MotionData\90009_load_traj','load_state');
+%save('E:\data\MotionData\90009_unload_traj','unload_state');

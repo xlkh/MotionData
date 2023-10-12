@@ -1,10 +1,19 @@
 %%开合度计算公式
-open = zeros(78304,2);%矩阵初始化
-Opts1 =detectImportOptions('.\74openFit9.1.xlsx');
+%%9.1 函数
+%open = zeros(78304,2);%矩阵初始化
+%Opts1 =detectImportOptions('E:\data\MotionData\74openFit9.1.xlsx');
+%Opts1.SelectedVariableNames = 3;
+%opt1.DataRange = '2:78305';
+%openValue = zeros(78304,3);
+%data = readmatrix('E:\data\MotionData\74openFit9.1.xlsx',Opts1);%读取数据
+
+%%9.2 函数
+open = zeros(54839,2);%矩阵初始化
+Opts1 =detectImportOptions('E:\data\MotionData\74openFit9.2.xlsx');
 Opts1.SelectedVariableNames = 3;
-opt1.DataRange = '2:78305';
-openValue = zeros(78304,3);
-data = readmatrix('.\74openFit9.1.xlsx',Opts1);%读取数据
+opt1.DataRange = '2:54839';
+openValue = zeros(54838,3);
+data = readmatrix('.\74openFit9.2.xlsx',Opts1);%读取数据
 
 %使用正则化进行数据匹配
 for i = 1:size(data,1)
@@ -27,7 +36,8 @@ else
 end 
 %%对特殊值进行处理
 %如果附近的数据相差太大可以认为该数据存在问题需要更改
-    for i = 2:78302
+    %for i = 2:78302
+     for i = 2:54838
         if openValue(i,2)~= openValue(i-1,2) && openValue(i,2)~=openValue(i+1,2)
             openValue(i,2) = openValue(i-1,2); 
         end
@@ -37,10 +47,15 @@ end
         end
         open(i,1) = openValue(i,2);
         open(i,2) = openValue(i,3);
-    end
+     end
 Opts1.SelectedVariableNames = 5;
-opt1.DataRange = '2:78305';
-data1 = readmatrix('E:\data\MotionData\74openFit9.1.xlsx',Opts1);
-for i = 1 : 78304
+%opt1.DataRange = '2:78305';
+opt1.DataRange = '2:54838';
+data1 = readmatrix('E:\data\MotionData\74openFit9.2.xlsx',Opts1);
+%data1 = readmatrix('E:\data\MotionData\74openFit9.1.xlsx',Opts1);
+%for i = 1 : 78304
+ for i = 1 :54838
 openValue(i,3) = data1(i);
-end
+ end
+ sortedOpenValue = sortrows(openValue, 3);
+openValue = sortedOpenValue;%对数据进行正向排序
