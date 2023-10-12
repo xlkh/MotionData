@@ -1,6 +1,7 @@
 %%卸载区曲率的计算函数
 % 实际数据
-load('90009_unload_traj.mat');
+%load('90009_unload_traj.mat');
+%load('90009_load_traj_166165_285664.mat');
 dx = diff(unload_state.jing);
 dy = diff(unload_state.wei);
 Size = length(dx);
@@ -35,10 +36,10 @@ unload_state.kappa = dheading_final./ds_final;
 %        time(i) = unload_state.t(i);
 %    end
 %end
-figure;
+
 nonZeroIndices = (unload_state.kappa ~= 0);
 filtered_kappa = unload_state.kappa(nonZeroIndices);
 filtered_time = unload_state.t(nonZeroIndices);
-
+figure;
 scatter(filtered_time,filtered_kappa);%绘制散点图
 %scatter(unload_state.t,unload_state.kappa);%绘制散点图

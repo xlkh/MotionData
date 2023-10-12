@@ -7,12 +7,22 @@
 %for i = 1 : 166163
     %TimeSerial(i) = data(i);
 %end
-pos.open = zeros(166163,1); %这里需要根据数据的大小来设置矩阵的大小
-for i = 1 : 166163 %这一部分的作用是将车辆空满载状态加入到pos.mat当中
+%pos.open = zeros(166163,1); %这里需要根据数据的大小来设置矩阵的大小
+valid = 0;
+pos.open = zeros(119500,1);
+clear sortedOpenValue;
+%for i = 1 : 166163 %这一部分的作用是将车辆空满载状态加入到pos.mat当中
+ for i = 1 : 119500
     %if openValue(i,3) == pos.linux_time(i)
-    %disp (pos.linux_time(i))
-    %disp (openValue(i,3))
-    if abs(openValue(i,3) - pos.linux_time(i)) < 1e-1 
+    for j = 1 : size(openValue,1)
+        if abs(openValue(j,3) - pos.linux_time(i)) < 1e-1 
+            valid = 1 ; 
+            break
+        else
+            valid = 0;
+        end
+    end
+    if valid == 1  
         %功能为时间轴对齐
         %由于数据存在非常小的误差 因此在这里需要设计一个判断
         pos.open(i,1) = openValue(i,2);
@@ -32,20 +42,20 @@ for i = 1 : 166163 %这一部分的作用是将车辆空满载状态加入到pos
     end
 end
 pos.colors = cell(size(pos.open));
-for i = 1:length(pos.open)
-    if pos.open(i) == 0
-        pos.colors{i} = 'r'; % 如果pos.open为0，设置为红色
-    else
-        pos.colors{i} = 'b'; % 如果pos.open为1，设置为蓝色
-    end
-end
-save('E:\data\MotionData\90009_traj_sep_1_166164.mat','pos');
+%for i = 1:length(pos.open)
+%    if pos.open(i) == 0
+%        pos.colors{i} = 'r'; % 如果pos.open为0，设置为红色
+%    else
+%        pos.colors{i} = 'b'; % 如果pos.open为1，设置为蓝色
+%    end
+%end
+save('E:\data\MotionData\90009_traj_sep_166165_285664.mat','pos');
 
 %%画图
-figure;
-for i = 1:length(pos.x)
-    color = pos.colors{i}; % 从pos.colors获取颜色字符串
-    plot3(pos.x(i), pos.y(i), pos.t(i), 'o', 'MarkerSize', 8, 'MarkerFaceColor', color, 'MarkerEdgeColor', color);
-    disp (i);
-    hold on;
-end
+%figure;
+%for i = 1:length(pos.x)
+%    color = pos.colors{i}; % 从pos.colors获取颜色字符串
+%    plot3(pos.x(i), pos.y(i), pos.t(i), 'o', 'MarkerSize', 8, 'MarkerFaceColor', color, 'MarkerEdgeColor', color);
+%    disp (i);
+%    hold on;
+%end
