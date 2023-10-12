@@ -1,10 +1,10 @@
 %%开合度计算公式
 open = zeros(78304,2);%矩阵初始化
-Opts1 =detectImportOptions('E:\data\MotionData\74openFit9.1.xlsx');
+Opts1 =detectImportOptions('.\74openFit9.1.xlsx');
 Opts1.SelectedVariableNames = 3;
 opt1.DataRange = '2:78305';
 openValue = zeros(78304,3);
-data = readmatrix('E:\data\MotionData\74openFit9.1.xlsx',Opts1);%读取数据
+data = readmatrix('.\74openFit9.1.xlsx',Opts1);%读取数据
 
 %使用正则化进行数据匹配
 for i = 1:size(data,1)
