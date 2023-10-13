@@ -1,4 +1,4 @@
-%%满载曲率的计算函数
+%% 满载曲率的计算函数
 % 实际数据
 %load('90009_load_traj.mat');
 %load('90009_load_traj_166165_285664.mat');
@@ -22,23 +22,11 @@ dheading_after = [dheading;dheading(end)];
 dheading_final = (dheading_pre + dheading_after)/2;
 
 load_state.kappa = dheading_final./ds_final;
-% 中点欧拉法计算曲率以及曲率半径
-%for i = 1:Size
-%    if abs(load_state.kappa(i)) > 1
-%        load_state.kappa(i) = 0;
-%    end 
-%end
-%curve = zeros(1,Size);
-%time = zeros(1,Size);
-%for i = 1:Size
-%    if abs(load_state.kappa(i)) < 1
-%        curve(i) = load_state.kappa(i);
-%        time(i) = load_state.t(i);
-%    end
-%end
+
+
 nonZeroIndices = (load_state.kappa ~= 0);
 filtered_kappa = load_state.kappa(nonZeroIndices);
 filtered_time = load_state.t(nonZeroIndices);
 figure;
-%scatter(load_state.t,load_state.kappa);%绘制散点图
 scatter(filtered_time,filtered_kappa);%绘制散点图
+title('Scatter Plot with load')

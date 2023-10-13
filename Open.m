@@ -1,3 +1,4 @@
+tic;
 %%开合度计算公式
 %%9.1 函数
 %open = zeros(78304,2);%矩阵初始化
@@ -7,9 +8,9 @@
 %openValue = zeros(78304,3);
 %data = readmatrix('E:\data\MotionData\74openFit9.1.xlsx',Opts1);%读取数据
 
-%%9.2 函数
+%% 9.2 函数
 open = zeros(54839,2);%矩阵初始化
-Opts1 =detectImportOptions('E:\data\MotionData\74openFit9.2.xlsx');
+Opts1 = detectImportOptions('E:\data\MotionData\74openFit9.2.xlsx');
 Opts1.SelectedVariableNames = 3;
 opt1.DataRange = '2:54839';
 openValue = zeros(54838,3);
@@ -34,7 +35,8 @@ else
     fprintf('未找到开合度值。\n');
     end
 end 
-%%对特殊值进行处理
+
+%% 对特殊值进行处理
 %如果附近的数据相差太大可以认为该数据存在问题需要更改
     %for i = 2:78302
      for i = 2:54838
@@ -45,8 +47,7 @@ end
             openValue(i,2) = openValue(i-1,2); 
             openValue(i+1,2) = openValue(i+2,2);
         end
-        open(i,1) = openValue(i,2);
-        open(i,2) = openValue(i,3);
+           open(i,1) = openValue(i,2);
      end
 Opts1.SelectedVariableNames = 5;
 %opt1.DataRange = '2:78305';
@@ -57,5 +58,20 @@ data1 = readmatrix('E:\data\MotionData\74openFit9.2.xlsx',Opts1);
  for i = 1 :54838
 openValue(i,3) = data1(i);
  end
- sortedOpenValue = sortrows(openValue, 3);
+ % 删除变量或数据
+ i = 1;
+while i <= (length(openValue) - 1)
+    if openValue(i, 3) == openValue(i+1, 3)
+        openValue(i, :) = [];
+    else
+        i = i + 1; % 只有在没有删除行时才递增索引
+    end
+end
+sortedOpenValue = sortrows(openValue, 3);
 openValue = sortedOpenValue;%对数据进行正向排序
+
+%open(:,2) = openValue(:,3);
+elapsedTime = toc;
+
+% 显示运行时间
+fprintf('函数运行时间为 %.4f 秒\n', elapsedTime);
