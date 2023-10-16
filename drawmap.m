@@ -2,7 +2,7 @@ tic;
 %% 数据处理
 load_batch_end_0 = '166164';
 load_batch_end_1 = '285664';
-load_batch_0 = ['2:', load_batch_end_0];%为什么是166164？\
+load_batch_0 = ['2:', load_batch_end_0];
 load_batch_1 = ['166165:',load_batch_end_1];
 %获取数据
 opt1 = detectImportOptions('.\90009轨迹9月.xlsx');

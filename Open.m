@@ -10,7 +10,7 @@ tic;
 
 %% 9.2 函数
 open = zeros(54839,2);%矩阵初始化
-Opts1 = detectImportOptions('E:\data\MotionData\74openFit9.2.xlsx');
+Opts1 = detectImportOptions('.\74openFit9.2.xlsx');
 Opts1.SelectedVariableNames = 3;
 opt1.DataRange = '2:54839';
 openValue = zeros(54838,3);
@@ -52,7 +52,7 @@ end
 Opts1.SelectedVariableNames = 5;
 %opt1.DataRange = '2:78305';
 opt1.DataRange = '2:54838';
-data1 = readmatrix('E:\data\MotionData\74openFit9.2.xlsx',Opts1);
+data1 = readmatrix('.\74openFit9.2.xlsx',Opts1);
 %data1 = readmatrix('E:\data\MotionData\74openFit9.1.xlsx',Opts1);
 %for i = 1 : 78304
  for i = 1 :54838

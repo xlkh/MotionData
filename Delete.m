@@ -19,3 +19,9 @@ openValue = flipud(openValue);
 % 对数据进行排序
 sortedOpenValue = sortrows(openValue, 3);
 openValue = sortedOpenValue;
+
+for i = 1:length(openValue)
+if openValue(i,1) == 0
+    time = openValue(i,3);
+end
+end

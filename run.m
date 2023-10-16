@@ -1,7 +1,7 @@
 %% 运行函数
 Open;
 drawmap;
-Addition2;
+Addition;
 transe;
 unloadCurve;
 loadCurve;
